@@ -32,13 +32,18 @@
             background-color: #f2f2f2;
         }
 
-        a {
+        /* 追加したスタイル */
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
             text-decoration: none;
-            color: #333;
+            border-radius: 4px;
         }
 
-        a:hover {
-            color: #45a049;
+        a.button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -63,7 +68,8 @@
         }
         ?>
     </table>
-    <p><a href="1-1.php">Specialties</a></p>
+    <!-- スタイルを適用したリンク -->
+    <p><a class="button" href="1-1.php">Specialties</a></p>
 </body>
 
 </html>

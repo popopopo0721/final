@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>1-3-output</title>
     <style>
-    body {
+        body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             margin: 20px;
@@ -38,7 +38,7 @@
         }
 
         .button {
-            background-color: #4caf50;
+            background-color: #45a049; /* 緑色に変更 */
             color: white;
             border: none;
             padding: 10px 15px;
@@ -53,10 +53,16 @@
         }
 
         .button:hover {
-            background-color: #45a049;
+            background-color: #4caf50; /* ホバー時の色を変更 */
             color: white;
         }
-</style>
+
+        /* エラーメッセージを左寄せにするスタイル */
+        .error-message {
+            text-align: left;
+            color: red;
+        }
+    </style>
 </head>
 
 <body style="text-align: center;">
@@ -72,18 +78,18 @@
     $sql = $pdo->prepare('INSERT INTO Specialties(specialty_name, production_location) VALUES (?, ?)');
 
     if (empty($_POST['specialty_name'])) {
-        echo '特産物を入力してください。';
+        echo '<div class="error-message">特産物を入力してください。</div>';
     } elseif (empty($_POST['production_location'])) {
-        echo '生産地を入力してください。';
+        echo '<div class="error-message">生産地を入力してください。</div>';
     } else {
         // Execute the SQL statement with specialty_name and production_location
         $sql = "INSERT INTO Specialties (specialty_name, production_location) VALUES (?, ?)";
         $stmt = $pdo->prepare($sql);
 
         if ($stmt->execute([$_POST['specialty_name'], $_POST['production_location']])) {
-            echo '<font color="red">追加に成功しました。</font>';
+            echo '<div class="error-message" style="color: red;">追加に成功しました。</div>';
         } else {
-            echo '<font color="red">追加に失敗しました。</font>';
+            echo '<div class="error-message" style="color: red;">追加に失敗しました。</div>';
         }
     }
     ?>
